@@ -11,6 +11,8 @@ import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.sid.coreapi.commands.CreateCustomerCommand;
 import org.sid.coreapi.commands.CreatedCustomerEvent;
+import org.sid.coreapi.commands.UpdateCustomerCommand;
+import org.sid.coreapi.commands.UpdatedCustomerEvent;
 
 @Aggregate
 @Slf4j
@@ -44,6 +46,25 @@ public class CustomerAggregate {
       customerId=event.getId();
          name= event.getName();
        email= event.getEmail();
+    }
+   // ==============Update ==============
+    @CommandHandler
+    public void on (UpdateCustomerCommand command){
+        log.info("====================");
+        log.info("UpdateCustomerCommand received  ");
+        AggregateLifecycle.apply(new UpdatedCustomerEvent(
+                command.getId(),
+                command.getName(),
+                command.getEmail()
+        ));
+    }
+    @EventSourcingHandler
+    public void on (UpdatedCustomerEvent event){
+        log.info("====================");
+        log.info("UpdatedCustomerEvent received  ");
+        customerId= event.getId();
+        name= event.getName();
+        email= event.getEmail();
     }
 
 }

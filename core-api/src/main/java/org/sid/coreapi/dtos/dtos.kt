@@ -8,3 +8,9 @@ data class CustomerRequestDto(
         var name: String="",
         var email:String=""
 )
+
+data class CustomerUpdateRequestDto(
+        var customerId:String="",
+        var name: String="",
+        var email:String=""
+)

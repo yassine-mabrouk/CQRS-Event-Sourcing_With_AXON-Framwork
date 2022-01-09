@@ -6,7 +6,9 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.sid.coreapi.commands.CreateCustomerCommand;
 import org.sid.coreapi.commands.CreatedCustomerEvent;
+import org.sid.coreapi.commands.UpdateCustomerCommand;
 import org.sid.coreapi.dtos.CustomerRequestDto;
+import org.sid.coreapi.dtos.CustomerUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -30,14 +32,19 @@ public class CustomerCommandController {
         ));
          return response;
     }
+    @PutMapping(path="/update")
+    public CompletableFuture<String> updateCustomer(@RequestBody CustomerUpdateRequestDto request){
+        CompletableFuture<String> response = commandGateway.send(new UpdateCustomerCommand(
+                request.getCustomerId(),
+                request.getName(),
+                request.getEmail()
+        ));
+        return response;
+    }
+
     @GetMapping(path="/eventStore/{id}")
     public Stream eventStore (@PathVariable String id ){
         return  eventStore.readEvents(id).asStream();
     }
 
-
-    @GetMapping
-    public String test (){
-        return "connectred ";
-    }
 }

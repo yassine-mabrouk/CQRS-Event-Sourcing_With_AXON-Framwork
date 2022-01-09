@@ -27,4 +27,5 @@ public class CustomerQueryHander {
         return customerRepo.findById(query.getId())
                 .orElseThrow(()-> new RuntimeException("cannot find customer"));
     }
+
 }
