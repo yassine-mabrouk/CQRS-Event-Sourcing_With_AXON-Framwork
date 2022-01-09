@@ -14,4 +14,7 @@ data class UpdatedCustomerEvent(
         val name :String,
         val email :String
 ) : BaseEvent<String>(id);
+data class DeletedCustomerEvent(
+        override val id :String,
+) : BaseEvent<String>(id);
 

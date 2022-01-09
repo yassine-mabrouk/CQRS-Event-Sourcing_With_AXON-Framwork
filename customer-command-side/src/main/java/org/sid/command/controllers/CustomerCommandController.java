@@ -6,7 +6,9 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.sid.coreapi.commands.CreateCustomerCommand;
 import org.sid.coreapi.commands.CreatedCustomerEvent;
+import org.sid.coreapi.commands.DeleteCustomerCommand;
 import org.sid.coreapi.commands.UpdateCustomerCommand;
+import org.sid.coreapi.dtos.CustomerDeleteRequestDto;
 import org.sid.coreapi.dtos.CustomerRequestDto;
 import org.sid.coreapi.dtos.CustomerUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +41,13 @@ public class CustomerCommandController {
                 request.getName(),
                 request.getEmail()
         ));
-        return response;
+        return  response;
+    }
+    @DeleteMapping("/{id}")
+    public CompletableFuture<String> deleteCustomer(@PathVariable String id ){
+        CompletableFuture<String> response =
+                commandGateway.send(new DeleteCustomerCommand(id));
+        return  response;
     }
 
     @GetMapping(path="/eventStore/{id}")

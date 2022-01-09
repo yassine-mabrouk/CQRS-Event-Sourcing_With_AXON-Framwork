@@ -14,3 +14,6 @@ data class CustomerUpdateRequestDto(
         var name: String="",
         var email:String=""
 )
+data class CustomerDeleteRequestDto(
+        var customerId:String="",
+)

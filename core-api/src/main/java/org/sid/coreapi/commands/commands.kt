@@ -17,3 +17,8 @@ data class UpdateCustomerCommand(
         val name :String,
         val email :String
 ) : BaseCommand<String>(id);
+
+data class DeleteCustomerCommand(
+        override val id :String,
+
+) : BaseCommand<String>(id);

@@ -9,10 +9,7 @@ import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.sid.coreapi.commands.CreateCustomerCommand;
-import org.sid.coreapi.commands.CreatedCustomerEvent;
-import org.sid.coreapi.commands.UpdateCustomerCommand;
-import org.sid.coreapi.commands.UpdatedCustomerEvent;
+import org.sid.coreapi.commands.*;
 
 @Aggregate
 @Slf4j
@@ -66,5 +63,13 @@ public class CustomerAggregate {
         name= event.getName();
         email= event.getEmail();
     }
-
+  // ==============delete ==================
+  @CommandHandler
+  public void on (DeleteCustomerCommand command){
+      log.info("====================");
+      log.info("DeleteCustomerCommand received  ");
+      AggregateLifecycle.apply(new DeletedCustomerEvent(
+              command.getId()
+      ));
+  }
 }
