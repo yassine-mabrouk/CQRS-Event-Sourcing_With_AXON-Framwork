@@ -1,4 +1,4 @@
-# Ibanking App Compte_CQRS-Event-Sourcing_Axon
+# CQRS-Event-Sourcing_With_AXON-Framwork_Spring-Cloud
 
 ## Application
 Développer un micro-service basé sur CQRS et Event Sourcing en utilisant AXON Server Externe. Ce micro service permet de gérer des clients.  Dans ce projet, il faut séparer les deux parties Command et Query dans deux micro-services indépendants. Le projet  doit respecter l'architecture suivante.
@@ -30,7 +30,7 @@ Le Projet se compose de trois modules :
 http://localhost:8024/#overview
 - Microservices 
 
-<img src="images/axon.PNG" alt="">
+  <img src="images/axon.PNG" alt="">
 
 - Events
   
