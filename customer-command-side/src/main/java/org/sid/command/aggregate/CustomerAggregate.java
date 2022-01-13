@@ -27,6 +27,7 @@ public class CustomerAggregate {
     @CommandHandler
     public CustomerAggregate(CreateCustomerCommand command) {
         // implimentre cote metier apres envopye une commande
+
         log.info("====================");
         log.info("CreateCustomerCommand reseved ");
         AggregateLifecycle.apply(new CreatedCustomerEvent(
@@ -44,6 +45,7 @@ public class CustomerAggregate {
          name= event.getName();
        email= event.getEmail();
     }
+
    // ==============Update ==============
     @CommandHandler
     public void on (UpdateCustomerCommand command){

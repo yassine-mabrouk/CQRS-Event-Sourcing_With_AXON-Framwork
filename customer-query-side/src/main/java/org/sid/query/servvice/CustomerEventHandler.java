@@ -20,7 +20,7 @@ import java.util.List;
 public class CustomerEventHandler
 {
     CustomerRepository customerRepo;
-    @EventHandler
+    @EventHandler  //
     public  void on (CreatedCustomerEvent event){
         log.info("======================");
         log.info("CreatedCustomerEvent received");
@@ -30,7 +30,8 @@ public class CustomerEventHandler
         customer.setEmail(event.getEmail());
         customerRepo.save(customer);
     }
-    @EventSourcingHandler
+
+    @EventHandler //
     public void on (UpdatedCustomerEvent event){
         log.info("======================");
         log.info("UpdatedCustomerEvent received ");
@@ -40,7 +41,7 @@ public class CustomerEventHandler
       customerRepo.save(customer);
     }
     // delete handeler
-    @EventSourcingHandler
+    @EventHandler
     public void on (DeletedCustomerEvent event){
         log.info("======================");
         log.info("UpdatedCustomerEvent received ");
